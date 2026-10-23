@@ -122,8 +122,9 @@ If you would like to contribute to tronweb-mobile, you can follow these steps:
 
 ### Prerequisites
 
-- **Node.js**: `v20.19.2` (recommended to use [nvm](https://github.com/nvm-sh/nvm) for version management)
+- **Node.js**: `v24.22.1` (recommended to use [nvm](https://github.com/nvm-sh/nvm) for version management)
 - **pnpm**: `v10.12.4` (install via `npm install -g pnpm@10.12.4`)
+- **npm**: no manual setup needed. `pnpm run buildPatch` pins npm `10.9.2` via `npx` for the upstream tronweb build, since npm 11 (bundled with Node 24) rejects its lockfile.
 
 ### Steps
 

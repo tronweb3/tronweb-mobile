@@ -10,7 +10,7 @@ path=$(dirname $(dirname "$PWD"))
 cp -r "$path/tronweb-diff.patch" tronweb-diff.patch
 git apply tronweb-diff.patch
 
-npm ci
+npx -y npm@10.9.2 ci
 
 echo "-------------end build tronweb.js--------------"
 
