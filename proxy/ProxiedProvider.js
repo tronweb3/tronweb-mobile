@@ -1,4 +1,4 @@
-const { providers } = require('../dist/TronWeb')
+const { providers } = require('tronweb/dist/TronWeb.js')
 import axios from 'axios';
 
 const { HttpProvider } = providers;

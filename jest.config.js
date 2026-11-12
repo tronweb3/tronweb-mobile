@@ -6,7 +6,7 @@ module.exports = {
     },
     transformIgnorePatterns: ['/node_modules/(?!eventemitter3)'],
     moduleNameMapper: {
-        '^../dist/TronWeb$': '<rootDir>/tests/__mocks__/TronWeb.js',
+        '^tronweb/dist/TronWeb\\.js$': '<rootDir>/tests/__mocks__/TronWeb.js',
         '^../package\\.json$': '<rootDir>/package.json',
     },
 };
