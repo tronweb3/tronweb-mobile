@@ -37,6 +37,21 @@ const baseConfig = {
                         plugins: basePlugins
                     }
                 }
+            },
+            {
+                // tronweb's prebuilt dist targets '>0.25%, not dead', which drifts with each release
+                // (since 6.5.1 it ships ?. and ??). Transpile it to the browserslist in package.json instead.
+                test: /[\\/]node_modules[\\/]tronweb[\\/]dist[\\/]TronWeb\.js$/,
+                use: {
+                    loader: 'babel-loader',
+                    options: {
+                        babelrc: false,
+                        configFile: false,
+                        sourceType: 'script',
+                        compact: true,
+                        presets: ['@babel/preset-env']
+                    }
+                }
             }
         ]
     },
@@ -84,6 +99,10 @@ module.exports = [
             ],
         },
         resolve: {
+            alias: {
+                // tronweb's package exports don't expose dist/, so point at the prebuilt browser UMD bundle directly
+                'tronweb/dist/TronWeb.js$': path.resolve(__dirname, 'node_modules/tronweb/dist/TronWeb.js'),
+            },
             fallback: {
                 buffer: require.resolve('buffer/'),
                 crypto: require.resolve('crypto-browserify'),

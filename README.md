@@ -19,6 +19,17 @@ When a user opens a DApp using the **TronLink App**:
 - `tronweb-mobile.js` is automatically injected into the WebView
 - DApps do not need to manually import or initialize the library
 - The TronLink App's capabilities can be accessed directly through global objects
+- Loading the library does **not** connect the wallet. `window.tronWeb` is available right away, but has no address and `tronWeb.ready` is not `true` until the DApp explicitly requests a connection, which shows the TronLink App's authorization prompt:
+
+```javascript
+// TronLink-style
+await window.tronLink.request({ method: 'tron_requestAccounts' });
+
+// EIP-1193 style, resolves with [address]
+const [address] = await window.tron.request({ method: 'eth_requestAccounts' });
+```
+
+DApps should call this from a user action (e.g. a "Connect Wallet" button). Concurrent requests share a single prompt.
 
 ## Global Objects
 
@@ -122,7 +133,7 @@ If you would like to contribute to tronweb-mobile, you can follow these steps:
 
 ### Prerequisites
 
-- **Node.js**: `v20.19.2` (recommended to use [nvm](https://github.com/nvm-sh/nvm) for version management)
+- **Node.js**: `v24.22.3` (recommended to use [nvm](https://github.com/nvm-sh/nvm) for version management)
 - **pnpm**: `v10.12.4` (install via `npm install -g pnpm@10.12.4`)
 
 ### Steps

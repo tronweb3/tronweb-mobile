@@ -3,7 +3,7 @@ import { ChainIds, RPC_ERRORS } from '../src/constants';
 import { setupTronLinkProvider, setupTronProvider } from '../src/providers';
 
 beforeEach(() => {
-    const { TronWeb } = require('../dist/TronWeb');
+    const { TronWeb } = require('tronweb/dist/TronWeb.js');
     state.tronWeb = new TronWeb({ fullNode: {}, solidityNode: {}, eventServer: {} });
     state.tronWeb.setAddress('TProviderAddr');
     state.cNetwork = 'MainNet';

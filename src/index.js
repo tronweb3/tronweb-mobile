@@ -1,11 +1,11 @@
-const { TronWeb, utils } = require('../dist/TronWeb');
+const { TronWeb, utils } = require('tronweb/dist/TronWeb.js');
 import ProxiedProvider from '../proxy/ProxiedProvider';
 
 import { netWorks } from './constants';
 import state from './state';
 import { applySignProxy } from './signing';
 import { setupTronLinkProvider, setupTronProvider } from './providers';
-import { injectTronWeb } from './injection';
+import { exposeTronWeb } from './injection';
 import { setupTip6963 } from './tip6963';
 
 // --- Read native environment ---
@@ -39,6 +39,5 @@ setupTronProvider();       // window.tron
 // --- TIP-6963 multi-provider discovery ---
 setupTip6963(window.tron);
 
-// --- Init ---
-injectTronWeb();
-window.tronLink.request({ method: 'tron_requestAccounts' });
+// --- Init: expose tronWeb only; DApps connect via tron_requestAccounts / eth_requestAccounts ---
+exposeTronWeb();
